@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'mi-secreto';
 
 const register = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
         if (!name || !email || !password) {
             return res.status(400).json({ mensaje: 'Todos los campos son requeridos' });
         }
@@ -15,7 +15,8 @@ const register = async (req, res) => {
         if (existing) {
             return res.status(409).json({ mensaje: 'El email ya está registrado' });
         }
-        const user = await UserModel.create({ name, email, password });
+        // Pasar el role al crear el usuario (si no viene, 'user' por defecto)
+        const user = await UserModel.create({ name, email, password, role: role || 'user' });
         res.status(201).json({ mensaje: 'Usuario registrado', user: { id: user.id, name: user.name, email: user.email, role: user.role } });
     } catch (error) {
         res.status(500).json({ error: error.message });

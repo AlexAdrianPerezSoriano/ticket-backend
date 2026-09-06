@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand --detectOpenHandles",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +25,10 @@
     "jest": "^30.5.1",
     "nodemon": "^3.1.14",
     "supertest": "^7.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["<rootDir>/src/tests/setup.js"],
+    "coveragePathIgnorePatterns": ["/node_modules/"]
   }
 }

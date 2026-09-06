@@ -20,10 +20,13 @@ const createReservation = async (req, res) => {
         });
     } catch (error) {
         // Capturamos errores de disponibilidad
-        if (error.message.includes('No hay suficientes tickets')) {
-            return res.status(400).json({ error: error.message });
-        }
-        res.status(500).json({ error: error.message });
+		if (error.message.includes('No hay suficientes tickets')) {
+			return res.status(400).json({ error: error.message });
+		}
+		if (error.message.includes('Evento no encontrado')) {
+			return res.status(404).json({ error: error.message });
+		}
+		res.status(500).json({ error: error.message });
     }
 };
 
