@@ -10,9 +10,9 @@ const create = async (userData) => {
     const { name, email, password, role = 'user' } = userData;
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await pool.query(
-        'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
-        [name, email, hashedPassword, role]
-    );
+    'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+    [name, email, hashedPassword, role] // <-- Guarda el rol
+  );
     return { id: result.insertId, name, email, role };
 };
 
