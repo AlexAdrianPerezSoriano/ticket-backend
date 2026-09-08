@@ -1,7 +1,8 @@
 # 🎟️ Ticket Reservation System - Backend
 
 ## 📌 Descripción
-API RESTful para un sistema de reserva de tickets. Permite gestionar eventos, reservas y autenticación de usuarios con JWT. Desarrollado con Node.js, Express y MySQL.
+API RESTful para un sistema de reserva de tickets. 
+Permite gestionar eventos, reservas y autenticación de usuarios con JWT. Desarrollado con Node.js, Express y MySQL.
 
 ## 🚀 Tecnologías
 - Node.js (v26)
@@ -96,6 +97,40 @@ role ENUM('user', 'admin')
 
 ---
 
+## 🗂️ Estructura del Proyecto
+
+backend/
+├── src/
+│ ├── config/
+│ │ └── database.js # Configuración de MySQL
+│ ├── models/
+│ │ ├── EventModel.js # Modelo de eventos
+│ │ ├── ReservationModel.js # Modelo de reservas
+│ │ └── UserModel.js # Modelo de usuarios
+│ ├── controllers/
+│ │ ├── eventController.js
+│ │ ├── reservationController.js
+│ │ └── authController.js
+│ ├── routes/
+│ │ ├── eventRoutes.js
+│ │ ├── reservationRoutes.js
+│ │ └── authRoutes.js
+│ ├── middleware/
+│ │ └── auth.js # Autenticación JWT
+│ ├── tests/
+│ │ ├── setup.js
+│ │ ├── events.test.js
+│ │ ├── auth.test.js
+│ │ └── reservations.test.js
+│ └── app.js # Punto de entrada
+├── init.sql # Script de base de datos
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+└── .env.example
+
+---
+
 ## 🧪 Pruebas Unitarias
 npm test              # Ejecutar todas las pruebas
 npm run test:watch    # Ejecutar con watch mode
@@ -113,11 +148,6 @@ docker compose up --build
 Servicios:
 - db: MySQL 8.4
 - backend: Node.js 26 + Express
-
----
-
-## 🌐 Despliegue en Producción
-Backend API: https://ticket-backend-7eva.onrender.com
 
 ---
 
